@@ -19,7 +19,7 @@ Ext.define('JRSS.controller.Blog', {
         var me = this;
 
         //Transition to next slide
-        me.transitionTime = 5;
+        me.transitionTime = 300;
         me.transDefer();
 
         //Reload feed
