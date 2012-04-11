@@ -19,16 +19,12 @@ Ext.define('JRSS.controller.Blog', {
         var me = this;
 
         //Transition to next slide
-        var transitionTime = 30;
-        Ext.Function.defer(function(){
-            me.getCarousel().setActiveItem(me.getCarousel().getActiveIndex()+1);
-        }, transitionTime * 1000);
+        me.transitionTime = 5;
+        me.transDefer();
 
         //Reload feed
-        var reloadTime = 15;
-        Ext.Function.defer(function(){
-            Ext.getStore('BlogEntries').load();
-        }, reloadTime * 60 * 1000);
+        me.reloadTime = 15;
+        me.feedDefer();
 
         //At first and each store load, create the carousel panels and set to the first
         Ext.getStore('BlogEntries').on('load', function(store, records, successful, operation, eOpts) {
@@ -43,5 +39,31 @@ Ext.define('JRSS.controller.Blog', {
             me.getCarousel().setActiveItem(0);
         });
 
+    },
+
+
+    transDefer: function(){
+        var me = this;
+        var c = me.getCarousel();
+        Ext.Function.defer(function(){
+            //console.log(c.getActiveIndex(), c.getItems().length);
+            if(c.getActiveIndex() == c.getItems().length - 2){
+                c.setActiveItem(0);
+            }else{
+                c.next();
+            }
+            me.transDefer();
+        }, me.transitionTime * 1000);
+    },
+
+    feedDefer: function(){
+        var me = this;
+        Ext.Function.defer(function(){
+            Ext.getStore('BlogEntries').load();
+            me.feedDefer();
+        }, me.reloadTime * 60 * 1000);
+
+
     }
+
 });
