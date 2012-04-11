@@ -5,13 +5,13 @@ Ext.Loader.setPath({
 //</debug>
 
 Ext.application({
+    controllers: ["Blog"],
+
     name: 'JRSS',
 
     requires: [
         'Ext.MessageBox'
     ],
-
-    views: ['Main'],
 
     icon: {
         57: 'resources/icons/Icon.png',
@@ -19,7 +19,7 @@ Ext.application({
         114: 'resources/icons/Icon@2x.png',
         144: 'resources/icons/Icon~ipad@2x.png'
     },
-    
+
     phoneStartupScreen: 'resources/loading/Homescreen.jpg',
     tabletStartupScreen: 'resources/loading/Homescreen~ipad.jpg',
 
