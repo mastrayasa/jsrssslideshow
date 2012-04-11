@@ -1,5 +1,6 @@
 Ext.define('JRSS.store.BlogEntries', {
     extend: 'Ext.data.Store',
+    requires: ['Ext.data.proxy.JsonP'],
 
     config: {
         model: 'JRSS.model.BlogEntry',

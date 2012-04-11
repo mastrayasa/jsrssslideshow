@@ -3,7 +3,7 @@ Ext.define('JRSS.controller.Blog', {
     config: {
         models: ['BlogEntry'],
         stores: ['BlogEntries'],
-        views: ['Blog'],
+        views: ['Main', 'Blog'],
 
 
         refs: {
@@ -17,5 +17,6 @@ Ext.define('JRSS.controller.Blog', {
     //called when the Application is launched, remove if not needed
     launch: function(app) {
         console.log("Launched!");
+        console.log(app);
     }
 });
