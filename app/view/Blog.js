@@ -3,8 +3,8 @@ Ext.define("JRSS.view.Blog", {
     alias: 'widget.blog',
 
     config: {
-        title: 'Welcome',
-        iconCls: 'star',
+        title: 'List',
+        iconCls: 'home',
         itemTpl: "<div>{content}</div>",
         store: 'BlogEntries'
     }
