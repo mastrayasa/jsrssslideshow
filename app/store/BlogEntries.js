@@ -7,7 +7,7 @@ Ext.define('JRSS.store.BlogEntries', {
 
         proxy: {
             type: 'jsonp',
-            url: 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://xkcd.com/rss.xml',
+            url: 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://stockphotos.yaymicro.com/screensaver/saver.rss',
             reader: {
                 type: 'json',
                 rootProperty: 'responseData.feed.entries'
