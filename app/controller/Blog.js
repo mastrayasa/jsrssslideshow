@@ -25,7 +25,7 @@ Ext.define('JRSS.controller.Blog', {
         me.transDefer();
 
         //Reload feed
-        me.reloadTime = 15;
+        me.reloadTime = 60;
         me.feedDefer();
 
         //At first and each store load, create the carousel panels and set to the first
