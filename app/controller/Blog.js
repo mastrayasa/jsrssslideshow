@@ -10,7 +10,9 @@ Ext.define('JRSS.controller.Blog', {
             carousel: 'carousel'
         },
         control: {
-
+            carousel: {
+                activeitemchange: 'carouselChange'
+            }
         }
     },
 
@@ -31,9 +33,15 @@ Ext.define('JRSS.controller.Blog', {
             var items = [];
             Ext.each(records, function(entry) {
                 items.push({
-                    xtype: 'panel',
+                    xtype: 'container',
                     html: entry.get('content')
                 });
+            });
+            //caboose with contents of first card
+            items.push({
+                xtype: 'container',
+                itemId: 'caboose',
+                html: items[0].html
             });
             me.getCarousel().setItems(items);
             me.getCarousel().setActiveItem(0);
@@ -41,17 +49,20 @@ Ext.define('JRSS.controller.Blog', {
 
     },
 
+    carouselChange: function(container, value, oldValue){
+        var me = this;
+        if(value && value.getItemId() == 'caboose'){
+            container.setActiveItem(0);
+        }
+
+    },
 
     transDefer: function(){
         var me = this;
         var c = me.getCarousel();
         Ext.Function.defer(function(){
             //console.log(c.getActiveIndex(), c.getItems().length);
-            if(c.getActiveIndex() == c.getItems().length - 2){
-                c.setActiveItem(0);
-            }else{
-                c.next();
-            }
+            c.next();
             me.transDefer();
         }, me.transitionTime * 1000);
     },
